@@ -2,11 +2,14 @@
 # The user is prompted to play the game, and they can choose between rock, paper, scissors.
 
 
+import random
+
 def play_game(user_choice):
-        
-    import random
     computer = ["rock", "paper", "scissors"]
     computer_choice = random.choice(computer)
+
+    print(f"Computer chose: {computer_choice}")
+
     if user_choice == computer_choice:
         print(f"---------Both chose {user_choice}. It's a tie!---------")
     elif (user_choice == "rock" and computer_choice == "scissors") or \
@@ -17,21 +20,23 @@ def play_game(user_choice):
         print(f"---------You lose! {computer_choice} beats {user_choice}.---------")
 
 
+# Main game loop
+response = input("Hi there! Do you want to play ROCK PAPER SCISSORS game? (yes/no): ").strip().lower()
 
-
-response = input("Hi there! Do you want to play ROCK PAPER SCISSORS game ? (yes/no):")
-
-if response.lower() == "no":
+if response == "no":
     print("OKEY, Let's play next time...")
 
-elif response.lower() == "yes":
+elif response == "yes":
     print("OKEY, Let's BEGIN...")
-    user_choice = input("Enter your choice (rock, paper, scissors): ").lower()
-    if user_choice not in ["rock", "paper", "scissors"]:
+    user_choice = input("Enter your choice (rock, paper, scissors): ").strip().lower()
+    
+    if user_choice in ["rock", "paper", "scissors"]:
+        play_game(user_choice)
+    else:
         print("Invalid choice! Please choose rock, paper, or scissors.")
 
 else:
-    print("You should enter yes or no only")
+    print("You should enter yes or no only.")
 
-play_game(user_choice)
 print("Thanks for playing! Goodbye!")
+
